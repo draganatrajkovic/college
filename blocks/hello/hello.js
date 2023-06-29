@@ -3,7 +3,7 @@ import { getLibs } from '../../scripts/utils.js';
 export default async function init(el) {
   const { textContent } = el;
   el.innerHTML = '';
-  const textArr = textContent.trim().split(',');
+  const textArr = textContent.split(',').map((t) => t.trim());
   const hello = textArr[0] || 'Hello';
   const name = textArr[1] || 'World';
   const { createTag, loadScript } = await import(`${getLibs()}/utils/utils.js`);
