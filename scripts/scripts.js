@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import { setLibs } from './utils.js';
+import { setLibs, initSidekick } from './utils.js';
 
 // Add project-wide style path here.
-const STYLES = '';
+const STYLES = './styles/styles.css';
 
 // Use 'https://milo.adobe.com/libs' if you cannot map '/libs' to milo's origin.
 const LIBS = '/libs';
@@ -28,6 +28,7 @@ const CONFIG = {
   locales: {
     '': { ietf: 'en-US', tk: 'hah7vzn.css' },
     de: { ietf: 'de-DE', tk: 'hah7vzn.css' },
+    it: { ietf: 'it-IT', tk: 'hah7vzn.css' },
     kr: { ietf: 'ko-KR', tk: 'zfo3ouc' },
   },
 };
@@ -59,7 +60,8 @@ const miloLibs = setLibs(LIBS);
 
 (async function loadPage() {
   const { loadArea, setConfig } = await import(`${miloLibs}/utils/utils.js`);
-
   setConfig({ ...CONFIG, miloLibs });
   await loadArea();
+  initSidekick();
 }());
+

@@ -36,3 +36,21 @@ export const [setLibs, getLibs] = (() => {
  * Note: This file should have no self-invoking functions.
  * ------------------------------------------------------------
  */
+
+export async function useMiloSample() {
+  const { createTag } = await import(`${getLibs()}/utils/utils.js`);
+}
+
+export function initSidekick() {
+  const initPlugins = async () => {
+    const { default: init } = await import('./sidekick.js');
+    init();
+  };
+  if (document.querySelector('helix-sidekick')) {
+    initPlugins();
+  } else {
+    document.addEventListener('sidekick-ready', () => {
+      initPlugins();
+    });
+  }
+}
